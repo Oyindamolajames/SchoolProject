@@ -14,15 +14,12 @@
     <div class="container-fostrap">
         <div>
             <img src="{% static 'logo.png' %}" class="fostrap-logo"/>
-            {%if searchTerm%}
+           
             <h1 class="heading">
-                Search for {{searchTerm}}
-            </h1>
-            {% else %}
-            <h1 class="heading">
+
                 Latest projects
             </h1>
-            {%endif%}
+           
         </div>
         <form action="">
             <div class="s container">
@@ -97,6 +94,7 @@
         <div class="content mt-5">
             <div class="container">
                 <div class="row">
+                  {% if projects %}
                     {% for p in projects %}
                     <div class="col-xs-12 col-sm-4">
                         <div class="card">
@@ -118,7 +116,7 @@
                                 </p>
                             </div>
                             <div class="card-read-more">
-                                <a href="" class="btn btn-link btn-block">
+                                <a href="{% url 'project_details' p.id %}" class="btn btn-link btn-block">
                                     See More
                                 </a>
                             </div>
@@ -126,6 +124,11 @@
                     </div>
 
                     {% endfor %}
+                    {% else %}
+
+                    <h1>No project match your search!</h1>
+
+                  {% endif %}
                 </div>
             </div>
             <nav aria-label="Page navigation example">

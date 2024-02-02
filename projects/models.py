@@ -23,6 +23,7 @@ class Project(models.Model):
     document = models.FileField(upload_to='documents')
     supervisor = models.ForeignKey(Supervisor, related_name='projects', on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
+    abstract = models.TextField(default="Abstract")
 
     class Meta:
         ordering = ('-date_added',)
